@@ -1,0 +1,3 @@
+     Prefix Verb URI Pattern          Controller#Action
+quote_index GET  /quote(.:format)     quote#index
+      quote GET  /quote/:id(.:format) quote#show

@@ -4,6 +4,13 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "articles#index"
 
-  resources :quote, only: [:index, :show]
+  get    '/users'          => 'users#index'
+  get    '/users/current'  => 'users#current'
+  post   '/users/create'   => 'users#create'
+  patch  '/user/:id'       => 'users#update'
+  delete '/user/:id'       => 'users#destroy'
+
+  get    '/quotes'            => 'quotes#index'
+  get    '/quotes/:search_tag' =>  'quotes#tag'
 
 end

@@ -1,3 +1,8 @@
-     Prefix Verb URI Pattern          Controller#Action
-quote_index GET  /quote(.:format)     quote#index
-      quote GET  /quote/:id(.:format) quote#show
+       Prefix Verb   URI Pattern                   Controller#Action
+        users GET    /users(.:format)              users#index
+users_current GET    /users/current(.:format)      users#current
+ users_create POST   /users/create(.:format)       users#create
+              PATCH  /user/:id(.:format)           users#update
+              DELETE /user/:id(.:format)           users#destroy
+       quotes GET    /quotes(.:format)             quotes#index
+              GET    /quotes/:search_tag(.:format) quotes#tag

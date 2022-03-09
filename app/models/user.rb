@@ -1,4 +1,10 @@
 class User
   include Mongoid::Document
-  include Mongoid::Attributes::Dynamic
+  include ActiveModel::SecurePassword
+  field :email, type: String
+  field :password_digest, type: String 
+  field :username, type: String
+  field :role, type: String, default: 'user'
+  has_secure_password
+  
 end

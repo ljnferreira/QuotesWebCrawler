@@ -22,4 +22,5 @@
 # Ignore master key for decrypting credentials and more.
 /config/master.key
 
-./routes.log
+# ignore routes log file
+routes.log

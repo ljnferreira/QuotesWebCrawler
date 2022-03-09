@@ -22,6 +22,9 @@ gem 'knock', github: "nsarno/knock", branch: "master",
 #Rack-cors
 gem 'rack-cors'
 
+#open-uri
+gem 'open-uri'
+
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 4.0"
 

@@ -25,6 +25,9 @@ gem 'rack-cors'
 #open-uri
 gem 'open-uri'
 
+#used in authentication procces
+gem 'bcrypt-ruby'
+
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 4.0"
 

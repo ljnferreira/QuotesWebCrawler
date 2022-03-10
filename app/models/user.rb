@@ -7,4 +7,8 @@ class User
   field :role, type: String, default: 'user'
   has_secure_password
   
+  def is_admin?
+    return false unless role == 'admin'
+  end
+
 end

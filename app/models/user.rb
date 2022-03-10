@@ -8,7 +8,7 @@ class User
   has_secure_password
   
   def is_admin?
-    return false unless role == 'admin'
+    return true unless role != 'admin'
   end
 
 end

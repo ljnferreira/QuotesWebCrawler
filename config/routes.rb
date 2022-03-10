@@ -18,4 +18,9 @@ Rails.application.routes.draw do
   get    '/quotes'            => 'quotes#index'
   get    '/quotes/:search_tag' =>  'quotes#tag'
 
+  #Cache actions
+  get    '/cache/saved'    => 'cache#saved_quotes'
+  get    '/cache/searched' => 'cache#searched_tags'
+  delete '/cache/clean'    => 'cache#clean_cache'
+
 end

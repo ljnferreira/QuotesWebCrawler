@@ -15,7 +15,6 @@ Rails.application.routes.draw do
   delete '/user/:id'       => 'users#destroy'
 
   # Quotes actions
-  get    '/quotes'            => 'quotes#index'
   get    '/quotes/:search_tag' =>  'quotes#tag'
 
   #Cache actions

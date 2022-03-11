@@ -1,0 +1,150 @@
+{
+	"info": {
+		"_postman_id": "d36bb35b-41ab-419a-a029-8bb0a2763716",
+		"name": "User requests",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Create user",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"user\": {\n        \"email\" : \"ljnferreira@gmail.com\",\n        \"password\": \"lucas@crawler\",\n        \"username\": \"Lucas Ferreira\",\n        \"role\": \"admin\"\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:5001/users/create",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"users",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "auth_token",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"auth\": {\n        \"email\": \"ljnferreira@gmail.com\",\n        \"password\": \"lucas@crawler\"\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:5001/user_token",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"user_token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "users",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2NDU0NjM2MDMsInN1YiI6Mn0.2R_8blpIUCei0ktFUBJSaHEa2tMRNg1HE8hWbyZM6u4",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:5001/users/",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"users",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "current user",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2NDY5NTUwMzEsInN1YiI6eyIkb2lkIjoiNjIyOTM2MGU4NzcwNWUzYTk0NjBjZmUwIn19.9byDgPtqLW_ZPtIjsrU9a6zToClP6pz5VsMI9UW4PLo",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:5001/users/current",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"users",
+						"current"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "auth",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2NDU0NjM2MDMsInN1YiI6Mn0.2R_8blpIUCei0ktFUBJSaHEa2tMRNg1HE8hWbyZM6u4",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:5001/auth",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"auth"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

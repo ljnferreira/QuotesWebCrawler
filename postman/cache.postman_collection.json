@@ -1,0 +1,96 @@
+{
+	"info": {
+		"_postman_id": "563a21ce-524f-4319-b547-ce57c3e01372",
+		"name": "cache",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "saved",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:5001/cache/saved",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"cache",
+						"saved"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "searched tags",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:5001/cache/searched",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"cache",
+						"searched"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "clean cache",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:5001/cache/clean",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"cache",
+						"clean"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2NDcwODgyNTMsInN1YiI6eyIkb2lkIjoiNjIyYTEyNTNjYzhkZGU0MjZhMGYxNGFlIn19.DkcqfRl7RqNqppeGYhl_u50wUkMQy7QT6CZOdmmqpHg",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}

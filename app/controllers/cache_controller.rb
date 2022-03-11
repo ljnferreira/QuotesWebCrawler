@@ -34,7 +34,7 @@ class CacheController < ApplicationController
 
   def filter_quote_atributes(quote)
     return quote.attributes.slice(
-      'author', 'quote', 'tags'
+      'author', 'author_about', 'quote', 'tags'
     )
   end
 

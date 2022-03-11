@@ -1,13 +1,22 @@
-# README
+# Quotes Web Crawler
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Este README servirá como guia para a execução desta aplicação passo a passo, 
+desde o setup inicial ao uso da mesma.
 
-Things you may want to cover:
+## Ambiente
 
-* Ruby version
+Para a configuração do ambiente de execução serão necessarias as seguintes dependencias: 
 
-* System dependencies
+* Ruby 3.0.3
+
+* MongoDB
+
+## Setup
+
+Apoś a instalacação das dependencias citadas acima, siga os seguintes passos:
+
+* Clonar o repositorio ou fazer download do codigo fonte. 
+    > git clone https://github.com/ljnferreira/QuotesWebCrawler.git
 
 * Configuration
 

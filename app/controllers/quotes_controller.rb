@@ -1,12 +1,7 @@
 require 'open-uri'
 
 class QuotesController < ApplicationController
-  before_action :authenticate_user,  only: [:index, :tag]
-  
-  def index
-    @quotes = Quote.all
-    render json: {saved: @quotes, all: get_quotes_from_document}
-  end
+  before_action :authenticate_user,  only: [:tag]
 
   def tag
     @tag = quotes_params

@@ -51,6 +51,16 @@ class QuotesController < ApplicationController
     return tags
   end
 
+  def get_about_link(doc_a)
+    partial = doc_a.map { |a| a['href']}
+    link = "http://quotes.toscrape.com#{partial[0]}" 
+    return link
+  end
+
+  def get_quote_text(doc_quote)
+    return doc_quote.inner_text.sub(/[\”]/,'').sub(/[\“]/,'')
+  end
+
   def get_quotes_from_document
     doc = get_document('http://quotes.toscrape.com/')
     quotes = {}
@@ -60,7 +70,8 @@ class QuotesController < ApplicationController
     docQuotes.each do |quote|
       quoteData = {}
       quoteData[:author] = quote.css('.author').inner_text
-      quoteData[:quote] = quote.css('.text').inner_text
+      quoteData[:author_about] = get_about_link(quote.css('span a'))
+      quoteData[:quote] = get_quote_text(quote.css('.text'))
       quoteData[:tags] = get_tags(quote.css('.tag'))
       quotesArray.push(quoteData)
     end
@@ -94,7 +105,7 @@ class QuotesController < ApplicationController
 
   def filter_quote_atributes(quote)
     return quote.attributes.slice(
-      'author', 'quote', 'tags'
+      'author', 'author_about', 'quote', 'tags'
     )
   end
 

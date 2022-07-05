@@ -1,8 +1,8 @@
 class QuotesCacheHandler 
   def saveQuotes(quotes)
     quotes.each do |quote|
-      _was_saved = Quote.where(:quote => quote[:quote]).exists?
-      if(not _was_saved)
+      _already_exists = Quote.where(:quote => quote[:quote]).exists?
+      if(not _already_exists)
         _q = Quote.new(quote)
         _q.save
       end

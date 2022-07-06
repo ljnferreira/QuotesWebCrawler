@@ -1,16 +1,16 @@
 require 'crawler'
 require 'quotes_cache_handler'
+require 'tag_handler'
 
 class QuotesManager 
   def getQuotes(search_tag) 
     @crawler = Crawler.new
     @quotes_cache_handler = QuotesCacheHandler.new
-    used_tag = UsedTag.where(tag: search_tag).first
-    if(used_tag.nil?)
+    @tag_handler = TagHandler.new
+    if(!@tag_handler.wasAlreadySearched?(search_tag))
       @quotes = @crawler.getQuotesFromDocument(search_tag)
       @quotes_cache_handler.saveQuotes(@quotes)
-      used_tag = UsedTag.new(tag: search_tag)
-      used_tag.save
+      @tag_handler.saveTag(search_tag)
     else
       @quotes = @quotes_cache_handler.getQuotesFromDatabase(search_tag)
     end

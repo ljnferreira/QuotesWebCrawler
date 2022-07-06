@@ -11,9 +11,15 @@ class QuotesCacheHandler
   
   def getQuotesFromDatabase(tag)
     @quotes = Quote.all
-    @quotes = filter_quotes_by_tag(@quotes, tag)
+    if(!tag.nil?)
+      @quotes = filter_quotes_by_tag(@quotes, tag)
+    end
     @quotes = filter_quotes_atributes(@quotes)
     return @quotes
+  end
+
+  def cleanQuotesCache 
+    return Quote.delete_all
   end
 
   private

@@ -7,7 +7,7 @@ class CacheController < ApplicationController
 
   def saved_quotes
     @quotes_cache_handler = QuotesCacheHandler.new
-    @quotes = @quotes_cache_handler.getQuotesFromDatabase(nil)
+    @quotes = @quotes_cache_handler.getAllQuotesFromDatabase
 
     render json: {cached_quotes: @quotes}
   end

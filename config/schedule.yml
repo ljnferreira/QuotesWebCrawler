@@ -1,0 +1,5 @@
+update_quotes_cache:
+  cron: "0 */12 * * *"
+  class: "UpdateJob"
+  queue: update_quotes_cache
+

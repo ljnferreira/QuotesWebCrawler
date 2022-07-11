@@ -9,13 +9,14 @@ class QuotesCacheHandler
     end
   end
   
-  def getQuotesFromDatabase(tag)
+  def getQuotesFromDatabaseByTag(tag)
+    @quotes = Quote.where(:tags.in => [tag])
+    return filter_quotes_atributes(@quotes)
+  end
+  
+  def getAllQuotesFromDatabase
     @quotes = Quote.all
-    if(!tag.nil?)
-      @quotes = filter_quotes_by_tag(@quotes, tag)
-    end
-    @quotes = filter_quotes_atributes(@quotes)
-    return @quotes
+    return filter_quotes_atributes(@quotes)
   end
 
   def cleanQuotesCache 
@@ -23,17 +24,6 @@ class QuotesCacheHandler
   end
 
   private
-
-  def filter_quotes_by_tag(quotes, search_tag)
-    quotes_with_tag = []
-    quotes.each do |quote|
-      quote[:tags].each do |tag|
-        quotes_with_tag.push(quote) if search_tag == tag
-      end
-    end
-    quotes = quotes_with_tag
-    return quotes
-  end
 
   def filter_quotes_atributes(quotes)
     filtered_quotes = []

@@ -83,6 +83,7 @@ GEM
     bson (4.15.0)
     builder (3.2.4)
     concurrent-ruby (1.1.10)
+    connection_pool (2.2.5)
     crass (1.0.6)
     date (3.2.2)
     debug (1.5.0)
@@ -90,6 +91,11 @@ GEM
       reline (>= 0.2.7)
     digest (3.1.0)
     erubi (1.10.0)
+    et-orbi (1.2.7)
+      tzinfo
+    fugit (1.5.3)
+      et-orbi (~> 1, >= 1.2.7)
+      raabro (~> 1.4)
     globalid (1.0.0)
       activesupport (>= 5.0)
     i18n (1.10.0)
@@ -140,6 +146,7 @@ GEM
       uri
     puma (5.6.4)
       nio4r (~> 2.0)
+    raabro (1.4.0)
     racc (1.6.0)
     rack (2.2.4)
     rack-cors (1.1.1)
@@ -173,9 +180,17 @@ GEM
       thor (~> 1.0)
       zeitwerk (~> 2.5)
     rake (13.0.6)
+    redis (4.7.1)
     reline (0.3.1)
       io-console (~> 0.5)
     ruby2_keywords (0.0.5)
+    sidekiq (6.5.1)
+      connection_pool (>= 2.2.2)
+      rack (~> 2.0)
+      redis (>= 4.2.0)
+    sidekiq-cron (1.6.0)
+      fugit (~> 1)
+      sidekiq (>= 4.2.1)
     stringio (3.0.2)
     strscan (3.0.3)
     thor (1.2.1)
@@ -204,6 +219,9 @@ DEPENDENCIES
   puma (~> 5.0)
   rack-cors
   rails (~> 7.0.2.3)
+  redis
+  sidekiq
+  sidekiq-cron
   tzinfo-data
 
 RUBY VERSION

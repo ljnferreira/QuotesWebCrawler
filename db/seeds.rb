@@ -6,14 +6,20 @@ User.create([
     role: "admin"
   },
   {
+    email: "wagner@inova.com",
+    password: "wagner@inova",
+    username: "Wagner Almeida",
+    role: "admin"
+  },
+  {
     email: "armando@inova.com",
     password: "armando@inova",
     username: "Armando Assunção",
     role: "admin"
   },
   {
-    email: "richarson@inova.com",
-    password: "richardson@inova",
-    username: "Richardson",
+    email: "maiki@inova.com",
+    password: "maiki@inova",
+    username: "Maiki Ferreira",
   }
 ])

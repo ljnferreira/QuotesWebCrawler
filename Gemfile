@@ -28,6 +28,11 @@ gem 'open-uri'
 #used in authentication procces
 gem 'bcrypt'
 
+# used to run assynchronous jobs
+gem 'sidekiq'
+gem 'sidekiq-cron'
+gem 'redis'
+
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 4.0"
 

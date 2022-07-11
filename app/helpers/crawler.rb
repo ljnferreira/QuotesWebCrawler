@@ -3,17 +3,23 @@ require 'open-uri'
 class Crawler 
   def getQuotesFromDocument(tag)
     @url = 'http://quotes.toscrape.com/'
-    doc = get_document(@url)
     quotesArray = Array.new
-    docQuotes = doc.css('.quote')
-    
-    docQuotes.each do |quote|
-      quoteData = Hash.new
-      quoteData[:author] = quote.css('.author').inner_text
-      quoteData[:author_about] = get_about_link(quote.css('span a'))
-      quoteData[:quote] = get_quote_text(quote.css('.text'))
-      quoteData[:tags] = get_tags(quote.css('.tag'))
-      quotesArray.push(quoteData)
+    loop do
+      doc = get_document(@url)
+      docQuotes = doc.css('.quote')
+      _next = doc.css('.next a')
+      
+      docQuotes.each do |quote|
+        quoteData = Hash.new
+        quoteData[:author] = quote.css('.author').inner_text
+        quoteData[:author_about] = get_link(quote.css('span a'))
+        quoteData[:quote] = get_quote_text(quote.css('.text'))
+        quoteData[:tags] = get_tags(quote.css('.tag'))
+        quotesArray.push(quoteData)
+      end
+
+      @url = get_link(_next) unless _next.empty?
+      break if (_next.empty?)
     end
     quotes = filter_quotes_by_tag(quotesArray, tag)
     return quotes
@@ -36,7 +42,7 @@ class Crawler
     return tags
   end
 
-  def get_about_link(doc_a)
+  def get_link(doc_a)
     partial = doc_a.map { |a| a['href']}
     link = "http://quotes.toscrape.com#{partial[0]}" 
     return link

@@ -8,11 +8,9 @@ Rails.application.routes.draw do
   post   'user_token'      => 'user_token#create'
 
   # User actions
-  get    '/users'          => 'users#index'
+  resources :users, only: [:index, :update, :destroy]
   get    '/users/current'  => 'users#current'
   post   '/users/create'   => 'users#create'
-  patch  '/user/:id'       => 'users#update'
-  delete '/user/:id'       => 'users#destroy'
 
   # Quotes actions
   get    '/quotes/:search_tag' =>  'quotes#tag'

@@ -1,6 +1,14 @@
 require 'open-uri'
 
+=begin
+  Esta classe é a responsável por fornecer um metodo que faz a busca pelas quotes
+no site e as filtra acordo com a tag pesquisada e retorna uma lista(Array) com as
+frases e os dados relacionados à elas. 
+=end
 class Crawler 
+  
+  #Percorre as paginas do site, extraindo as frases e retorna um array com as 
+  #frases que contem a tag pesquisada. 
   def getQuotesFromDocument(tag)
     @url = 'http://quotes.toscrape.com/'
     quotesArray = Array.new
@@ -15,14 +23,13 @@ class Crawler
         quoteData[:author_about] = get_link(quote.css('span a'))
         quoteData[:quote] = get_quote_text(quote.css('.text'))
         quoteData[:tags] = get_tags(quote.css('.tag'))
-        quotesArray.push(quoteData)
+        quotesArray.push(quoteData) if quoteData[:tags].include?(tag)
       end
 
       @url = get_link(_next) unless _next.empty?
       break if (_next.empty?)
     end
-    quotes = filter_quotes_by_tag(quotesArray, tag)
-    return quotes
+    return quotesArray
   end
   
   private
@@ -50,18 +57,6 @@ class Crawler
 
   def get_quote_text(doc_quote)
     return doc_quote.inner_text.sub(/[\”]/,'').sub(/[\“]/,'')
-  end
-
-  def filter_quotes_by_tag(quotes, search_tag)
-    quotes_with_tag = []
-    quotes.each do |quote|
-      quote[:tags].each do |tag|
-        quotes_with_tag.push(quote) if tag.eql?(search_tag)
-      end
-    end
-    puts "filtered_quotes #{quotes_with_tag}"
-    quotes = quotes_with_tag
-    return quotes
   end
 
 end

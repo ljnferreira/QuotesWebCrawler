@@ -1,11 +1,33 @@
 # Quotes Web Crawler
 
-Este README foi escrito para ser guia para a execução desta aplicação passo a passo.
-desde o setup inicial ao uso da mesma.
+Este web crawler foi desenvolvido com o objetivo de fazer a busca de frases que
+contenham uma determinada tag que é passada como parametro para a rota responsável
+por retornar os resultados da busca.
+
+Ao se fazer uma chamada à rota ***/quotes/:search_tag*** é feita uma chamada ao método
+tag do controller que por sua vez faz uma chamada ao metodo **getQuotes**, passando
+como parametro a tag.
+
+Quando a execução chega ao metodo **getQuotes** o mesmo verifica se a tag já foi
+buscada, caso não haja registro de busca prévia faz a busca no site e retorna as
+quotes encontradas para a tag buscada, adicionando-as ao cache, porém se já houver ocorrido busca por aquele termo faz a busca no cache e retona o resultado.  
+
+Se o resultado da busca no cache não retornar nenhuma frase executa novamente a
+busca no site, retornando como resultado as quotes encontradas ou um array vazio
+caso não haja nenhuma quote com a tag desejada.
+
+Há também um serviço que roda de forma assíncrona em paralelo com a execução
+principal da aplicação que executa um job agendado via **sidekiq-cron** em
+combinação com o cache server **Redis**. Este job será realizado a cada 12 horas
+pelo servidor **sidekiq**, que carrega e executa todas as tarefas agendadas e salvas
+no **Redis**.
+
+Abaixo segue um guia para que você possa executar e testar esta aplicação passo
+a passo, cobrindo desde o setup inicial ao uso da mesma.
 
 ## Ambiente
 
-Para a configuração do ambiente de execução serão necessarias as seguintes dependencias: 
+Para a configuração do ambiente de execução serão necessarias as seguintes dependencias:
 
 * Ruby 3.0.3
 
@@ -18,7 +40,7 @@ Para a configuração do ambiente de execução serão necessarias as seguintes 
 Apoś a instalacação das dependencias citadas acima, siga os seguintes passos:
 
 * Clonar o repositorio ou fazer download do codigo fonte.
-    > git clone https://github.com/ljnferreira/QuotesWebCrawler.git  
+    > git clone <https://github.com/ljnferreira/QuotesWebCrawler.git>  
     >ou  
     >  gh repo clone ljnferreira/QuotesWebCrawler
 
@@ -55,8 +77,8 @@ Apoś a instalacação das dependencias citadas acima, siga os seguintes passos:
   * Para iniciar em uma porta diferente e servir para todas as maquinas com acesso a rede:
     >rails s -p \<porta> --binding=0.0.0.0
   
-Ao inicializar o servidor rails o mesmo irá configurar no cache Redis uma tarefa
-que será executada a cada 12 horas, atualizando o cache com as quotes já pesquisada
+Ao inicializar o servidor rails o mesmo irá agendar no cache Redis uma tarefa
+que será executada a cada 12 horas, atualizando o cache com as quotes já pesquisadas
 verificando para atualizações.
 
 * Para permitir que essas tarefas sejam executadas é necessário que se inicialize

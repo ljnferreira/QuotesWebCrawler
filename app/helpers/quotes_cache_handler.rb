@@ -1,4 +1,12 @@
+=begin
+  Esta Classe é responsavel por gerenciar todas as operações executadas relacionadas
+  ao salvamento e recuperação das Quotes no banco de dados.
+=end
 class QuotesCacheHandler 
+=begin  
+  Metodo que salva todas as quotes contidas no arrar caso as mesmas já não tenham
+  sido adicionadas ao banco de cache.
+=end
   def saveQuotes(quotes)
     quotes.each do |quote|
       _already_exists = Quote.where(:quote => quote[:quote]).exists?
@@ -8,12 +16,18 @@ class QuotesCacheHandler
       end
     end
   end
-  
+=begin
+  Este metodo retorna todas as quotes salvas no banco de cache que contenham 
+determinada tag. 
+=end
   def getQuotesFromDatabaseByTag(tag)
     @quotes = Quote.where(:tags.in => [tag])
     return filter_quotes_atributes(@quotes)
   end
-  
+
+=begin 
+  Este método obtem todas as quotes salvas em cache
+=end
   def getAllQuotesFromDatabase
     @quotes = Quote.all
     return filter_quotes_atributes(@quotes)
